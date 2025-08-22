@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>📢 조합원 알림톡 안내</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f1f3f5;
+    }
+    .container {
+      max-width: 720px;
+    }
+    .form-label i {
+      color: #0d6efd;
+      margin-right: 4px;
+    }
+    .form-control:focus {
+      box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+    }
+    #copyMsg {
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5 p-4 bg-white rounded shadow">
+    <h4 class="mb-4 text-center">📤 <strong>조합원 알림톡 발송</strong></h4>
+
+    <form id="notifyForm">
+      <div class="mb-3">
+        <label for="name" class="form-label"><i class="bi bi-person-fill"></i>🤵수신자 성함</label>
+        <input type="text" class="form-control" id="name" placeholder="예: 홍길동, '홍길동 조합원' 또는 '조합원'으로 입력" required />
+      </div>
+      <div class="mb-3">
+        <label for="receiver" class="form-label"><i class="bi bi-telephone-fill"></i>☎수신자 연락처</label>
+        <input type="tel" class="form-control" id="receiver" placeholder="숫자만 입력 (예: 01012345678)" required />
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label"><i class="bi bi-pencil-square"></i>🔎문의 제목(내용)</label>
+        <input type="text" class="form-control" id="subject" placeholder="예: 골프부킹신청 사이트" required />
+      </div>
+      <div class="mb-3">
+  <label class="form-label"><i class="bi bi-chat-dots-fill"></i>💬회신 내용</label>
+  <textarea class="form-control" id="message" rows="3" placeholder="총 105bytes이내로 URL링크는 공백으로 분리해 주세요" required></textarea>
+  <div id="byteCount" class="form-text text-end text-muted">총 0 / 105 bytes</div>
+</div>
+  <div class="mb-3">
+        <label for="sender" class="form-label"><i class="bi bi-person-badge-fill"></i>👤보내는 직원</label>
+        <select class="form-select" id="sender" required>
+          <option value="">직원 선택</option>
+          <option>경기도건축사 신협</option>
+          <option>박정원 전무</option>
+          <option>김소영 차장</option>
+          <option>최두준 과장</option>
+          <option>김민지 대리</option>
+          <option>정태현 계장</option>
+          <option>박민선 주임</option>
+          <option>변우빈 사원</option>
+          <option>서한나 사원</option>
+          <option>윤주한 이사장</option>
+        </select>
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn btn-primary w-100">
+        <span id="btnText">📤 알림톡 전송</span>
+        <span id="btnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+      </button>
+    </form>
+    <div id="result" class="mt-4"></div>
+     <!-- 자주쓰는 링크 -->
+    <div class="mt-5 p-3 border rounded bg-light">
+      <label for="linkSelect" class="form-label fw-semibold">📚 자주 쓰는 안내 링크</label>
+      <div class="input-group mb-3">
+        <select class="form-select" id="linkSelect">
+          <option value="">🔍 안내 링크 선택 => 답변내용에 자동입력 </option>
+          <option value="https://go.bccard.com/app/apply?mbNo=048"># 민생회복 소비쿠폰 신청</option>
+          <option value="https://seolpro.github.io/home/kgiracu/book_golf.html">⛳골프부킹신청</option>
+          <option value="https://dpaper.kr/deepLinkList.do">🔗전자지갑 증명서신청.제출</option>          
+         <!--  <option value="https://ajou9770.github.io/usertip/dm.html"># 소노호텔 리조트 안내</option>
+          <option value="https://ajou9770.github.io/notice/sgicsign.html"># 서울보증보험 전자서명</option> -->
+          <option value="http://pf.kakao.com/_xeXdhs/friend"># 조합 카카오톡홈</option>
+          <option value="http://pf.kakao.com/_dfhkK/friend"># 카카오채널 친구추가</option>
+        </select>
+        <button class="btn btn-outline-secondary" type="button" id="copyLinkBtn">📋 복사</button>
+      </div>
+      <input type="text" id="linkUrl" class="form-control" readonly placeholder="선택한 URL이 여기에 표시됩니다" />
+      <div id="copyMsg" class="form-text text-success mt-2 d-none">✅ 링크가 복사되었습니다!</div>
+    </div>
+  </div>
+
+  <script>
+      const messageInput = document.getElementById("message");
+  const byteCountDisplay = document.getElementById("byteCount");
+  const MAX1 = 55;
+  const MAX2 = 50;
+  const MAX_TOTAL = MAX1 + MAX2;
+
+  function getByteLength(text) {
+    return new Blob([text]).size;
+  }
+
+  function splitTextByByte(text, maxBytes) {
+    let result = '';
+    let byteCount = 0;
+
+    for (let char of text) {
+      const byte = getByteLength(char);
+      if (byteCount + byte > maxBytes) break;
+      result += char;
+      byteCount += byte;
+    }
+
+    return result;
+  }
+
+  messageInput.addEventListener("input", function () {
+    const fullText = messageInput.value;
+    const totalBytes = getByteLength(fullText);
+
+    if (totalBytes > MAX_TOTAL) {
+      // 자동 잘라서 110바이트까지만 유지
+      const trimmed = splitTextByByte(fullText, MAX_TOTAL);
+      messageInput.value = trimmed;
+    }
+
+    byteCountDisplay.textContent = `${getByteLength(messageInput.value)} / ${MAX_TOTAL} bytes`;
+    byteCountDisplay.classList.toggle("text-danger", getByteLength(messageInput.value) >= MAX_TOTAL);
+  });
+
+    // 링크 삽입
+    const linkSelect = document.getElementById("linkSelect");
+const linkUrl = document.getElementById("linkUrl");
+const copyBtn = document.getElementById("copyLinkBtn");
+const copyMsg = document.getElementById("copyMsg");
+
+linkSelect.addEventListener("change", () => {
+  const url = linkSelect.value;
+  linkUrl.value = url || "";
+  copyMsg.classList.add("d-none");
+
+  if (url && !messageInput.value.includes(url)) {
+    messageInput.value += (messageInput.value ? '\n' : '') + url;
+    messageInput.dispatchEvent(new Event("input")); // 자동 바이트 계산/제한 반영
+  }
+});
+
+copyBtn.addEventListener("click", async () => {
+  if (!linkUrl.value) return;
+  try {
+    await navigator.clipboard.writeText(linkUrl.value);
+    copyMsg.classList.remove("d-none");
+    setTimeout(() => copyMsg.classList.add("d-none"), 2000);
+  } catch (err) {
+    alert("❌ 복사 실패: 클립보드 권한을 확인해 주세요.");
+  }
+});
+
+    // 전송 로직
+    document.getElementById("notifyForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const to = document.getElementById("receiver").value.replace(/[^0-9]/g, '');
+      const var1 = document.getElementById("subject").value.trim(); // 제목
+      const var3 = document.getElementById("sender").value;         // 직원
+      const fullMsg = document.getElementById("message").value.trim();
+      const var2 = splitTextByByte(fullMsg, MAX1); // 앞 55바이트
+      const var4 = splitTextByByte(fullMsg.substring(var2.length), MAX2); // 나머지 최대 50바이트       // 내용2
+
+      if (!name || !to || !var1 || !var2 || !var3) {
+        alert("모든 항목을 빠짐없이 입력해 주세요.");
+        return;
+      }
+
+      const confirmMsg = `📱 수신자: ${name} [ ${to} ]\n📌 제목: ${var1}\n\n📨 회신내용: ${var2}${var4}\n\n👤 직원: ${var3}\n\n이대로 전송하시겠습니까?`;
+      if (!confirm(confirmMsg)) return;
+
+      const submitBtn = document.getElementById("submitBtn");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "📤 전송 중...";
+
+      try {
+        const res = await fetch("https://kgiracu.mycafe24.com/send_alt.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, to, var1, var3, var4, var2 })
+        });
+
+        const result = await res.json();
+        const resultBox = document.getElementById("result");
+
+        if (result.code === "1000") {
+          resultBox.innerHTML = `<div class="alert alert-success">✅ 발송 성공: 수신자에게 알림톡이 전송되었습니다.</div>`;
+        } else {
+          resultBox.innerHTML = `<div class="alert alert-danger">❌ 발송 실패: ${result.description || '오류 발생'}</div>`;
+        }
+      } catch (err) {
+        document.getElementById("result").innerHTML = `<div class="alert alert-danger">❌ 전송 오류: 서버에 연결할 수 없습니다.</div>`;
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = "📤 알림톡 전송";
+    });
+  </script>
+</body>
+</html>
