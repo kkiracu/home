@@ -103,112 +103,95 @@
   const MAX2 = 50;
   const MAX_TOTAL = MAX1 + MAX2;
 
-  function getByteLength(text) {
-    return new Blob([text]).size;
-  }
-
+  function getByteLength(text) { return new Blob([text]).size; }
   function splitTextByByte(text, maxBytes) {
-    let result = '';
-    let byteCount = 0;
-
-    for (let char of text) {
-      const byte = getByteLength(char);
-      if (byteCount + byte > maxBytes) break;
-      result += char;
-      byteCount += byte;
+    let result = '', byteCount = 0;
+    for (let ch of text) {
+      const b = getByteLength(ch);
+      if (byteCount + b > maxBytes) break;
+      result += ch; byteCount += b;
     }
-
     return result;
   }
 
   messageInput.addEventListener("input", function () {
-    const fullText = messageInput.value;
-    const totalBytes = getByteLength(fullText);
-
-    if (totalBytes > MAX_TOTAL) {
-      // 자동 잘라서 110바이트까지만 유지
-      const trimmed = splitTextByByte(fullText, MAX_TOTAL);
-      messageInput.value = trimmed;
-    }
-
-    byteCountDisplay.textContent = `${getByteLength(messageInput.value)} / ${MAX_TOTAL} bytes`;
-    byteCountDisplay.classList.toggle("text-danger", getByteLength(messageInput.value) >= MAX_TOTAL);
+    const full = messageInput.value;
+    const total = getByteLength(full);
+    if (total > MAX_TOTAL) messageInput.value = splitTextByByte(full, MAX_TOTAL);
+    const used = getByteLength(messageInput.value);
+    byteCountDisplay.textContent = `${used} / ${MAX_TOTAL} bytes`;
+    byteCountDisplay.classList.toggle("text-danger", used >= MAX_TOTAL);
   });
 
-    // 링크 삽입
-    const linkSelect = document.getElementById("linkSelect");
-const linkUrl = document.getElementById("linkUrl");
-const copyBtn = document.getElementById("copyLinkBtn");
-const copyMsg = document.getElementById("copyMsg");
+  // 링크 유틸 (그대로)
+  const linkSelect = document.getElementById("linkSelect");
+  const linkUrl = document.getElementById("linkUrl");
+  const copyBtn = document.getElementById("copyLinkBtn");
+  const copyMsg = document.getElementById("copyMsg");
+  linkSelect.addEventListener("change", () => {
+    const url = linkSelect.value;
+    linkUrl.value = url || "";
+    copyMsg.classList.add("d-none");
+    if (url && !messageInput.value.includes(url)) {
+      messageInput.value += (messageInput.value ? '\n' : '') + url;
+      messageInput.dispatchEvent(new Event("input"));
+    }
+  });
+  copyBtn.addEventListener("click", async () => {
+    if (!linkUrl.value) return;
+    try { await navigator.clipboard.writeText(linkUrl.value);
+      copyMsg.classList.remove("d-none"); setTimeout(()=>copyMsg.classList.add("d-none"), 2000);
+    } catch { alert("❌ 복사 실패: 클립보드 권한을 확인해 주세요."); }
+  });
 
-linkSelect.addEventListener("change", () => {
-  const url = linkSelect.value;
-  linkUrl.value = url || "";
-  copyMsg.classList.add("d-none");
+  // 전송 로직
+  document.getElementById("notifyForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  if (url && !messageInput.value.includes(url)) {
-    messageInput.value += (messageInput.value ? '\n' : '') + url;
-    messageInput.dispatchEvent(new Event("input")); // 자동 바이트 계산/제한 반영
-  }
-});
+    const name = document.getElementById("name").value.trim();
+    const to   = document.getElementById("receiver").value.replace(/[^0-9]/g, '');
+    const var1 = document.getElementById("subject").value.trim(); // 제목
+    const fullMsg = document.getElementById("message").value.trim();
+    const var2 = splitTextByByte(fullMsg, MAX1);                                 // 내용1
+    const var3 = splitTextByByte(fullMsg.substring(var2.length), MAX2);          // 내용2
+    const var4 = document.getElementById("sender").value;                        // 직원
 
-copyBtn.addEventListener("click", async () => {
-  if (!linkUrl.value) return;
-  try {
-    await navigator.clipboard.writeText(linkUrl.value);
-    copyMsg.classList.remove("d-none");
-    setTimeout(() => copyMsg.classList.add("d-none"), 2000);
-  } catch (err) {
-    alert("❌ 복사 실패: 클립보드 권한을 확인해 주세요.");
-  }
-});
+    if (!name || !to || !var1 || !var2 || !var4) {
+      alert("모든 항목을 빠짐없이 입력해 주세요."); return;
+    }
 
-    // 전송 로직
-    document.getElementById("notifyForm").addEventListener("submit", async function (e) {
-      e.preventDefault();
+    const confirmMsg =
+`📱 수신자: ${name} [ ${to} ]
+📌 제목: ${var1}
 
-      const name = document.getElementById("name").value.trim();
-      const to = document.getElementById("receiver").value.replace(/[^0-9]/g, '');
-      const var1 = document.getElementById("subject").value.trim(); // 제목
-      const var3 = document.getElementById("sender").value;         // 직원
-      const fullMsg = document.getElementById("message").value.trim();
-      const var2 = splitTextByByte(fullMsg, MAX1); // 앞 55바이트
-      const var4 = splitTextByByte(fullMsg.substring(var2.length), MAX2); // 나머지 최대 50바이트       // 내용2
+📨 회신내용: ${var2}${var3}
 
-      if (!name || !to || !var1 || !var2 || !var3) {
-        alert("모든 항목을 빠짐없이 입력해 주세요.");
-        return;
+👤 직원: ${var4}
+
+이대로 전송하시겠습니까?`;
+    if (!confirm(confirmMsg)) return;
+
+    const submitBtn = document.getElementById("submitBtn");
+    submitBtn.disabled = true; submitBtn.innerText = "📤 전송 중...";
+
+    try {
+      const res = await fetch("https://ajoucu.mycafe24.com/send_alt.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, to, var1, var2, var3, var4 }) // <-- 순서/의미 일치
+      });
+      const result = await res.json();
+      const resultBox = document.getElementById("result");
+      if (result.code === "1000") {
+        resultBox.innerHTML = `<div class="alert alert-success">✅ 발송 성공: 수신자에게 알림톡이 전송되었습니다.</div>`;
+      } else {
+        resultBox.innerHTML = `<div class="alert alert-danger">❌ 발송 실패: ${result.description || '오류 발생'}</div>`;
       }
-
-      const confirmMsg = `📱 수신자: ${name} [ ${to} ]\n📌 제목: ${var1}\n\n📨 회신내용: ${var2}${var4}\n\n👤 직원: ${var3}\n\n이대로 전송하시겠습니까?`;
-      if (!confirm(confirmMsg)) return;
-
-      const submitBtn = document.getElementById("submitBtn");
-      submitBtn.disabled = true;
-      submitBtn.innerText = "📤 전송 중...";
-
-      try {
-        const res = await fetch("https://kgiracu.mycafe24.com/send_alt.php", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, to, var1, var3, var4, var2 })
-        });
-
-        const result = await res.json();
-        const resultBox = document.getElementById("result");
-
-        if (result.code === "1000") {
-          resultBox.innerHTML = `<div class="alert alert-success">✅ 발송 성공: 수신자에게 알림톡이 전송되었습니다.</div>`;
-        } else {
-          resultBox.innerHTML = `<div class="alert alert-danger">❌ 발송 실패: ${result.description || '오류 발생'}</div>`;
-        }
-      } catch (err) {
-        document.getElementById("result").innerHTML = `<div class="alert alert-danger">❌ 전송 오류: 서버에 연결할 수 없습니다.</div>`;
-      }
-
-      submitBtn.disabled = false;
-      submitBtn.innerText = "📤 알림톡 전송";
-    });
+    } catch {
+      document.getElementById("result").innerHTML = `<div class="alert alert-danger">❌ 전송 오류: 서버에 연결할 수 없습니다.</div>`;
+    }
+    submitBtn.disabled = false; submitBtn.innerText = "📤 알림톡 전송";
+  });
   </script>
 </body>
 </html>
