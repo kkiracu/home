@@ -104,8 +104,8 @@ $day = (int)$now->format('N');
 $hour= (int)$now->format('G');
 if ($day >= 1 && $day <= 5 && $hour >= 8 && $hour < 22){
   $targets[] = [
-    'to'   => formatPhone('01071186639'),
-    'name' => '[책임자] ' . $name,
+    'to'   => formatPhone('01033331986'),
+    'name' => '[관리자/최과장님] ' . $name,
     'changeWord' => [
       'var1' => $bookingId,
       'var2' => $date,
