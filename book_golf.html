@@ -437,7 +437,7 @@ function formatDateShortKR(dateLike){
             selected.disabled = true;
             selected.parentElement.classList.add('slot-disabled');
           } else {
-            showToast('⚠️ 전송 실패: ' + (data.error || ''), 'warning');
+            showToast('⚠️ 전송(신청) 실패(불가): ' + (data.error || ''), 'warning');
           }
         } catch {
           showToast('🚨 전송 중 오류가 발생했습니다.', 'danger');
