@@ -18,62 +18,58 @@
     .kv .v { flex:1; }
     .slot-disabled { opacity:.55; text-decoration: line-through; }
     /* 라디오 항목 스타일 */
-.tee-slot { padding: .25rem .5rem; }
-.tee-slot .form-check-input { margin-top: 0; }
-.time-badge{
-  font-weight: 700; padding:.25rem .5rem; border-radius:.5rem;
-  background:#e7f1ff; /* 파랑계열 */
-}
-.date-chip{
-  font-weight:600; padding:.15rem .5rem; border-radius:.5rem;
-  background:#f1f3f5; color:#495057;
-}
-.course-pill{
-  padding:.15rem .5rem; border-radius:999px; background:#eef7e9; color:#2f7a34;
-}
-.fee-badge{
-  padding:.15rem .5rem; border-radius:.5rem; background:#fff3cd; color:#8a6d3b;
-}
-.note-chip{
-  padding:.15rem .5rem; border-radius:.5rem; background:#f8f9fa; color:#6c757d;
-}
-/* 라디오 버튼 기본 크기 확대 */
-.form-check-input[type="radio"] {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #888;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-/* 포커스(탭키 이동 시) */
-.form-check-input[type="radio"]:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(59,130,246,.5); /* 파란 테두리 */
-  border-color: #3b82f6;
-}
-
-/* 선택 안 된 상태 */
-.form-check-input[type="radio"] {
-  background-color: #fff;
-}
-
-/* 선택된 상태 */
-.form-check-input[type="radio"]:checked {
-  background-color: #22c55e;   /* 선명한 초록 */
-  border-color: #16a34a;
-}
-
-/* 선택 시 동그라미 대신 체크 표시 */
-.form-check-input[type="radio"]:checked::before {
-  content: "✔";
-  color: #fff;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
+    .tee-slot { padding: .25rem .5rem; }
+    .tee-slot .form-check-input { margin-top: 0; }
+    .time-badge{
+      font-weight: 700; padding:.25rem .5rem; border-radius:.5rem;
+      background:#e7f1ff; /* 파랑계열 */
+    }
+    .date-chip{
+      font-weight:600; padding:.15rem .5rem; border-radius:.5rem;
+      background:#f1f3f5; color:#495057;
+    }
+    .course-pill{
+      padding:.15rem .5rem; border-radius:999px; background:#eef7e9; color:#2f7a34;
+    }
+    .fee-badge{
+      padding:.15rem .5rem; border-radius:.5rem; background:#fff3cd; color:#8a6d3b;
+    }
+    .note-chip{
+      padding:.15rem .5rem; border-radius:.5rem; background:#f8f9fa; color:#6c757d;
+    }
+    /* 라디오 버튼 기본 크기 확대 */
+    .form-check-input[type="radio"] {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #888;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    /* 포커스(탭키 이동 시) */
+    .form-check-input[type="radio"]:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59,130,246,.5); /* 파란 테두리 */
+      border-color: #3b82f6;
+    }
+    /* 선택 안 된 상태 */
+    .form-check-input[type="radio"] {
+      background-color: #fff;
+    }
+    /* 선택된 상태 */
+    .form-check-input[type="radio"]:checked {
+      background-color: #22c55e;   /* 선명한 초록 */
+      border-color: #16a34a;
+    }
+    /* 선택 시 동그라미 대신 체크 표시 */
+    .form-check-input[type="radio"]:checked::before {
+      content: "✔";
+      color: #fff;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
@@ -81,19 +77,15 @@
     <!-- 헤더 -->
     <div class="text-left mb-4">
       <h3 class="fw-bold">
-  <img 
-    src="img/logo.jpg" 
-    alt="아이콘" 
-    style="height: 1.3em; vertical-align: middle; margin-right: 6px;" 
-  />경기도건축사신협 우수조합원
-</h3>
-
+        <img src="img/logo.jpg" alt="아이콘" style="height: 1.3em; vertical-align: middle; margin-right: 6px;" />
+        경기도건축사신협 우수조합원
+      </h3>
       <h4 class="fw-bold"><span>⛳</span>센추리21CC 골프 예약신청</h4>
       <p class="text-muted mb-0">
         📌 아래 일정을 선택해 예약을 요청해 주세요.<br>담당자가 확인 후 개별 안내드립니다.
         <br>
         💦 예약 후 사용하지 않을 경우 취소 처리해 주시기 바랍니다. (※아래, 예약번호 조회 후 취소가능)
-        </p>
+      </p>
     </div>
 
     <!-- 안내 -->
@@ -144,17 +136,6 @@
             </label>
             <div class="invalid-feedback">개인정보 수집·이용 동의가 필요합니다.</div>
           </div>
-          <div class="small-muted mb-4">
-            <details>
-              <summary class="mb-2">📜 개인정보 수집·이용 동의 전문 보기/닫기</summary>
-              <div>
-                - 수집항목: 성명, 연락처, 신청일정, 코멘트<br/>
-                - 이용목적: 예약요청 확인, 안내 및 민원처리<br/>
-                - 보유기간: 목적 달성 시까지 또는 관련 법령에 따른 기간<br/>
-                ※ 귀하는 동의를 거부할 권리가 있으며, 미동의 시 서비스 제공이 제한될 수 있습니다.
-              </div>
-            </details>
-          </div>
 
           <div class="d-grid">
             <button type="submit" id="btnOpenConfirm" class="btn btn-primary btn-lg">
@@ -162,34 +143,35 @@
             </button>
           </div>
         </form>
+
         <!-- 예약 조회/취소 섹션 -->
         <hr class="my-2">
         <div class="card shadow-sm mt-4">
-        <!-- 휴대폰번호조회 또는 예약번호 조회 옵션-->
-            <!-- <h5 class="fw-semibold mb-3">📋 휴대폰 번호로 예약 조회 및 취소</h5>
-            <div class="input-group mb-3">
-              <span class="input-group-text">📱 휴대폰번호</span>
-              <input type="tel" id="lookupPhone" class="form-control" placeholder="숫자만 입력" />
-              <button class="btn btn-outline-primary" id="btnLookup">조회</button>
+          <!-- 휴대폰번호 조회 UI는 필요 시 주석 해제 -->
+          <!--
+          <h5 class="fw-semibold mb-3">📋 휴대폰 번호로 예약 조회 및 취소</h5>
+          <div class="input-group mb-3">
+            <span class="input-group-text">📱 휴대폰번호</span>
+            <input type="tel" id="lookupPhone" class="form-control" placeholder="숫자만 입력" />
+            <button class="btn btn-outline-primary" id="btnLookup">조회</button>
+          </div>
+          <div id="lookupResult" class="mt-3"></div>
+          -->
+
+          <!-- ✅ 예약번호 조회 -->
+          <div class="card shadow-sm mt-3">
+            <div class="card-body">
+              <h5 class="fw-semibold mb-3">🔎 예약번호로 조회 및 취소</h5>
+              <div class="input-group mb-3">
+                <span class="input-group-text"># 예약번호</span>
+                <input type="text" id="lookupBookingId" class="form-control" placeholder="6자리 숫자" inputmode="numeric" />
+                <button class="btn btn-outline-primary" id="btnLookupId">조회</button>
+              </div>
+              <div class="form-text">예: 384927 (💡예약시 알림톡 안내된 6자리 번호)</div>
+              <span style="color: red;">⛔사용일기준 7일전까지만 취소 가능합니다. </span>
+              <div id="lookupResultId" class="mt-3"></div>
             </div>
-            <div id="lookupResult" class="mt-3"></div> -->
-
-            <!-- ✅ 예약번호 조회 -->
-<div class="card shadow-sm mt-3">
-  <div class="card-body">
-    <h5 class="fw-semibold mb-3">🔎 예약번호로 조회 및 취소</h5>
-    <div class="input-group mb-3">
-      <span class="input-group-text"># 예약번호</span>
-      <input type="text" id="lookupBookingId" class="form-control" placeholder="6자리 숫자" inputmode="numeric" />
-      <button class="btn btn-outline-primary" id="btnLookupId">조회</button>
-    </div>
-    <div class="form-text">예: 384927 (💡예약시 알림톡 안내된 6자리 번호)</div>
-    <span style="color: red;">⛔사용일기준 7일전까지만 취소 가능합니다. </span>
-    <div id="lookupResultId" class="mt-3"></div>
-  </div>
-</div>
-
-         
+          </div>
         </div>
       </div>
     </div>
@@ -237,7 +219,7 @@
     const id = 't' + Math.random().toString(36).slice(2);
     const node = document.createElement('div');
     node.className = 'toast align-items-center text-bg-' +
-                     (type==='success'?'success': (type==='warning'?'warning':'danger')) + ' border-0';
+                     (type==='success'?'success': (type==='warning'?'warning': (type==='info'?'info':'danger'))) + ' border-0';
     node.id = id;
     node.innerHTML = `
       <div class="d-flex">
@@ -250,41 +232,42 @@
     toast._element.addEventListener('hidden.bs.toast', () => node.remove());
   }
 
-  
-  /* ========= Tee time 로드 (라디오) ========= */
-   async function loadDates() {
+  /* ========= Tee time 로드 (라디오) - 로딩 스피너 강화 ========= */
+  async function loadDates() {
     const wrap = document.getElementById('dateRadioGroup');
-    wrap.innerHTML = `<div class="text-muted">🔄 신청 가능 TeeTime을 불러오는 중...</div>`;
+    wrap.innerHTML = `
+      <div class="d-flex align-items-center text-muted py-2">
+        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        신청 가능 TeeTime을 불러오는 중...
+      </div>`;
+
     try {
       const resp = await fetch(GAS_URL + '?route=dates');
       const data = await resp.json();
       if (!data.success) throw new Error();
 
       wrap.innerHTML = '';
-     // loadDates() 내부 data.entries.forEach(item => { ... }) 부분 교체
-data.entries.forEach(item => {
-  const id = 'slot_' + item.id;
-  const t  = formatTimeTerse(item.time ?? item.timeLabel);      // ⏱ 07:30
-  const d  = formatDateShortKR(item.date ?? item.dateLabel);    // 📅 9/17(수)
-  const fee = formatFeeKR(item.fee ?? item.feeLabel);           // 💰 14.5만원
-  const course = String(item.course||'').trim();
+      data.entries.forEach(item => {
+        const id = 'slot_' + item.id;
+        const t  = formatTimeTerse(item.time ?? item.timeLabel);
+        const d  = formatDateShortKR(item.date ?? item.dateLabel);
+        const fee = formatFeeKR(item.fee ?? item.feeLabel);
+        const course = String(item.course||'').trim();
 
-  const div = document.createElement('div');
-  div.className = 'form-check tee-slot';
-
-  div.innerHTML = `
-    <input class="form-check-input" type="radio" name="teeTime" id="${id}" value="${item.id}" required>
-    <label class="form-check-label d-flex align-items-center gap-2" for="${id}">
-      <span class="date-chip">${d}</span>
-      <span class="time-badge">${t}</span>
-      <span class="course-pill">${course}</span>
-      <span class="fee-badge">${fee}</span>
-      ${item.note ? `<span class="note-chip">💦 ${esc(item.note)}</span>` : ''}
-    </label>
-  `;
-  wrap.appendChild(div);
-});
-
+        const div = document.createElement('div');
+        div.className = 'form-check tee-slot';
+        div.innerHTML = `
+          <input class="form-check-input" type="radio" name="teeTime" id="${id}" value="${item.id}" required>
+          <label class="form-check-label d-flex align-items-center gap-2" for="${id}">
+            <span class="date-chip">${d}</span>
+            <span class="time-badge">${t}</span>
+            <span class="course-pill">${course}</span>
+            <span class="fee-badge">${fee}</span>
+            ${item.note ? `<span class="note-chip">💦 ${esc(item.note)}</span>` : ''}
+          </label>
+        `;
+        wrap.appendChild(div);
+      });
     } catch {
       wrap.innerHTML = `<div class="text-danger">❌ TeeTime 불러오기 실패</div>`;
       showToast('일정 불러오기 실패!', 'danger');
@@ -295,28 +278,29 @@ data.entries.forEach(item => {
   function onlyDigits(s){ return String(s||'').replace(/[^0-9]/g, ''); }
   function formatPhoneDisplay(num) {
     const s = onlyDigits(num);
-    if (s.startsWith('02') && s.length===10) return s.replace(/(\\d{2})(\\d{4})(\\d{4})/,'$1-$2-$3');
-    if (s.length===11) return s.replace(/(\\d{3})(\\d{4})(\\d{4})/,'$1-$2-$3');
-    if (s.length===10) return s.replace(/(\\d{3})(\\d{3})(\\d{4})/,'$1-$2-$3');
+    if (s.startsWith('02') && s.length===10) return s.replace(/(\d{2})(\d{4})(\d{4})/,'$1-$2-$3');
+    if (s.length===11) return s.replace(/(\d{3})(\d{4})(\d{4})/,'$1-$2-$3');
+    if (s.length===10) return s.replace(/(\d{3})(\d{3})(\d{4})/,'$1-$2-$3');
     return num;
   }
 
   // ⏱ 예: "07:30"
-function formatTimeTerse(timeLike){
-  const t = parseTimeLike(timeLike);
-  if (t instanceof Date) return t.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false});
-  if (typeof t === 'string') return t.slice(0,5);
-  return '';
-}
+  function formatTimeTerse(timeLike){
+    const t = parseTimeLike(timeLike);
+    if (t instanceof Date) return t.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false});
+    if (typeof t === 'string') return t.slice(0,5);
+    return '';
+  }
 
-// 📅 예: "9/17(수)"  (연도 제외)
-function formatDateShortKR(dateLike){
-  const d = parseDateLike(dateLike);
-  if (!d) return String(dateLike||'');
-  const m = d.getMonth()+1, day = d.getDate();
-  const wk = ['일','월','화','수','목','금','토'][d.getDay()];
-  return `${m}/${day}(${wk})`;
-}
+  // 📅 예: "9/17(수)"  (연도 제외)
+  function formatDateShortKR(dateLike){
+    const d = parseDateLike(dateLike);
+    if (!d) return String(dateLike||'');
+    const m = d.getMonth()+1, day = d.getDate();
+    const wk = ['일','월','화','수','목','금','토'][d.getDay()];
+    return `${m}/${day}(${wk})`;
+  }
+
   /* ========= 헬퍼(포맷/파싱) ========= */
   function esc(s){
     return String(s ?? '')
@@ -342,7 +326,7 @@ function formatDateShortKR(dateLike){
     if (v instanceof Date && !isNaN(v)) return v;
     if (typeof v === 'number') return serialToDate(v); // supports 0~1 fraction
     if (typeof v === 'string'){
-      if (/^\\d{1,2}:\\d{2}(:\\d{2})?$/.test(v)) return v; // use as-is
+      if (/^\d{1,2}:\d{2}(:\d{2})?$/.test(v)) return v; // use as-is
       const d = new Date(v);
       if (!isNaN(d)) return d;
     }
@@ -366,7 +350,7 @@ function formatDateShortKR(dateLike){
     if (typeof fee === 'number') return (fee/10000).toFixed(1) + '만원';
     const s = String(fee ?? '').trim();
     if (s.endsWith('만원')) return s;
-    if (/^\\d+(\\.\\d+)?$/.test(s)) return (Number(s)/10000).toFixed(1) + '만원';
+    if (/^\d+(\.\d+)?$/.test(s)) return (Number(s)/10000).toFixed(1) + '만원';
     return esc(s);
   }
 
@@ -389,32 +373,75 @@ function formatDateShortKR(dateLike){
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      form.classList.add('was-validated');
-      if (!form.checkValidity()) return;
 
-      const selected = document.querySelector('input[name="teeTime"]:checked');
-      if (!selected) {
-        showToast('TeeTime을 선택해 주세요.', 'warning');
+      // ✅ 필수값 alert 보강
+      const nameVal  = document.getElementById('name').value.trim();
+      const phoneRaw = document.getElementById('phone').value.trim();
+      const phoneDigits = onlyDigits(phoneRaw);
+
+      if (!nameVal) {
+        alert('⚠️성명을 입력해 주세요.');
+        document.getElementById('name').focus();
+        return;
+      }
+      if (!(phoneDigits.length === 10 || phoneDigits.length === 11)) {
+        alert('⚠️연락처를 정확히 입력해 주세요. (하이픈 없이 10~11자리)');
+        document.getElementById('phone').focus();
         return;
       }
 
-      document.getElementById('cfName').textContent     = document.getElementById('name').value.trim();
-      document.getElementById('cfPhone').textContent    = document.getElementById('phone').value.trim();
+      form.classList.add('was-validated');
+
+      const selected = document.querySelector('input[name="teeTime"]:checked');
+      if (!selected) {
+        showToast('⚠️TeeTime을 선택해 주세요.', 'warning');
+        return;
+      }
+
+      document.getElementById('cfName').textContent     = nameVal;
+      document.getElementById('cfPhone').textContent    = phoneRaw;
       document.getElementById('cfDateText').textContent = selected.nextElementSibling.textContent;
       document.getElementById('cfComment').textContent  = document.getElementById('comment').value.trim() || '-';
 
       const m = new bootstrap.Modal(document.getElementById('confirmModal'));
       m.show();
 
-      // 모달 내 최종 제출
+      // 모달 내 최종 제출 (중복 체크 포함)
       btnSubmitFinal.onclick = async () => {
         btnSubmitFinal.disabled = true;
         btnSubmitSpin.classList.remove('d-none');
 
+        const selected = document.querySelector('input[name="teeTime"]:checked');
+        const nameVal  = document.getElementById('name').value.trim();
+        const phoneVal = document.getElementById('phone').value.trim();
+        const phoneDigits = onlyDigits(phoneVal);
+
+        // 🔍 기신청/중복 신청 체크
+        const dup = await checkDuplicateApplication(phoneDigits, selected.value);
+
+        // 같은 일정으로 이미 신청됨 → 즉시 차단
+        if (dup.hasSame) {
+          alert('⛔같은 일정으로 이미 신청 내역이 있습니다.');
+          btnSubmitFinal.disabled = false;
+          btnSubmitSpin.classList.add('d-none');
+          return;
+        }
+
+        // 다른 일정이라도 기신청 내역 존재 → 재확인
+        if (dup.hasAny) {
+          const ok = confirm('⛔기 신청 내역이 있습니다. 중복신청은 제한됩니다. ⛔취소해 주세요(제출불가)');
+          if (!ok) {
+            btnSubmitFinal.disabled = false;
+            btnSubmitSpin.classList.add('d-none');
+            return;
+          }
+        }
+
+        // ✅ 제출 진행
         const payload = {
-          route: 'reserve', // 백엔드 명시적 호출
-          name: document.getElementById('name').value.trim(),
-          phone: document.getElementById('phone').value.trim(),
+          route: 'reserve',
+          name: nameVal,
+          phone: phoneVal,
           dateId: selected.value,
           comment: document.getElementById('comment').value.trim(),
           consent: document.getElementById('agree').checked ? 'Y' : 'N'
@@ -423,7 +450,7 @@ function formatDateShortKR(dateLike){
         try {
           const resp = await fetch(GAS_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' }, // preflight 회피
             body: JSON.stringify(payload)
           });
           const data = await resp.json();
@@ -449,55 +476,84 @@ function formatDateShortKR(dateLike){
     });
   });
 
-  /* ========= 예약 조회/취소 ========= */
+  /* ========= 예약 조회/취소 공통 상태 ========= */
   let _lookupAC = null;         // 중복요청 방지
   let _lastLookupPhone = '';    // 재조회용
 
- async function cancelBooking(dateId) {
-  if (!confirm("🤷‍♂️해당 예약을 취소하시겠습니까?")) return;
+  /* ========= 기신청/중복신청 조회 ========= */
+  async function checkDuplicateApplication(phoneDigits, targetDateId) {
+    try {
+      const url = `${GAS_URL}?route=lookup&phone=${encodeURIComponent(phoneDigits)}&t=${Date.now()}`;
+      const resp = await fetch(url, { cache: 'no-store' });
+      const data = await resp.json();
 
-  // 1️⃣ 로딩 표시 시작
-  showToast("⏳ 취소 처리중입니다...", "info");
-  const cancelBtn = document.querySelector(`#cancelBtn_${dateId}`);
-  if (cancelBtn) {
-    cancelBtn.disabled = true;
-    cancelBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>취소중...`;
-  }
+      if (!data.success || !Array.isArray(data.entries)) return { hasAny:false, hasSame:false };
 
-  try {
-    const resp = await fetch(GAS_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-      body: JSON.stringify({ route: "cancel", dateId })
-    });
-    const data = await resp.json();
+      let hasAny = false;
+      let hasSame = false;
 
-    if (data.success) {
-      showToast("❌ 예약이 취소되었습니다.", "warning");
-      if (_lastLookupPhone) lookupBooking(_lastLookupPhone); // 재조회
-      loadDates(); // 남은 티타임 갱신
-    } else {
-      showToast("취소 실패: " + (data.error || ""), "danger");
-    }
-  } catch {
-    showToast("네트워크 오류로 취소 실패", "danger");
-  } finally {
-    // 2️⃣ 로딩 표시 종료
-    if (cancelBtn) {
-      cancelBtn.disabled = false;
-      cancelBtn.innerHTML = "취소하기";
+      for (const e of data.entries) {
+        const st = String(e.status || '').trim();
+        const isCanceled = /취소/.test(st); // '취소됨' 등
+        if (isCanceled) continue;
+
+        hasAny = true;
+        if (String(e.dateId) === String(targetDateId)) {
+          hasSame = true;
+          break;
+        }
+      }
+      return { hasAny, hasSame };
+    } catch {
+      return { hasAny:false, hasSame:false };
     }
   }
-}
 
+  /* ========= 예약 취소 ========= */
+  async function cancelBooking(dateId) {
+    if (!confirm("🤷‍♂️해당 예약을 취소하시겠습니까?")) return;
+
+    const btn = document.querySelector(`#cancelBtn_${dateId}`);
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>취소중...`;
+    }
+
+    try {
+      const resp = await fetch(GAS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+        body: JSON.stringify({ route: "cancel", dateId })
+      });
+      const data = await resp.json();
+
+      if (data.success) {
+        showToast("❌ 예약이 취소되었습니다.", "warning");
+        if (_lastLookupPhone) lookupBooking(_lastLookupPhone); // 재조회
+        setTimeout(() => loadDates(), 250); // 200~300ms 지연 후 재로드
+      } else {
+        showToast("취소 실패: " + (data.error || ""), "danger");
+      }
+    } catch {
+      showToast("네트워크 오류로 취소 실패", "danger");
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = "취소";
+      }
+    }
+  }
+  window.cancelBooking = cancelBooking; // 인라인 onclick 사용을 위해 노출
+
+  /* ========= 휴대폰번호로 예약 조회 (UI는 주석 처리 상태) ========= */
   async function lookupBooking(phoneDigits){
     const wrap = document.getElementById('lookupResult');
     const btn  = document.getElementById('btnLookup');
 
     if (!/^\d{11}$/.test(String(phoneDigits || ''))) {
-  showToast("⚠휴대폰번호를 정확히 입력하세요.", "warning");
-  return;
-}
+      showToast("⚠휴대폰번호를 정확히 입력하세요.", "warning");
+      return;
+    }
     _lastLookupPhone = phoneDigits;
 
     // 기존 요청 취소
@@ -505,13 +561,19 @@ function formatDateShortKR(dateLike){
     _lookupAC = new AbortController();
 
     // 로딩 UI
-    btn.disabled = true;
-    const oldBtnHTML = btn.innerHTML;
-    btn.innerHTML = '🔄조회중... <span class="spinner-border spinner-border-sm ms-1" role="status" aria-hidden="true"></span>';
-    wrap.innerHTML = `<div class="text-muted">
-      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-      🔄조회 중입니다...잠시만 기다려 주세요
-    </div>`;
+    if (btn) {
+      btn.disabled = true;
+      const oldBtnHTML = btn.innerHTML;
+      btn.innerHTML = '🔄조회중... <span class="spinner-border spinner-border-sm ms-1" role="status" aria-hidden="true"></span>';
+      // 요청 종료 후 복원
+      setTimeout(()=>{ if(btn){ btn.disabled=false; btn.innerHTML=oldBtnHTML; }}, 1200);
+    }
+    if (wrap) {
+      wrap.innerHTML = `<div class="text-muted">
+        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        🔄조회 중입니다...잠시만 기다려 주세요
+      </div>`;
+    }
 
     try {
       const resp = await fetch(
@@ -522,272 +584,175 @@ function formatDateShortKR(dateLike){
       if (!data.success) throw new Error(data.error || '조회 실패');
 
       const entries = Array.isArray(data.entries) ? data.entries : [];
+      if (!wrap) return;
       if (entries.length === 0){
         wrap.innerHTML = `<div class="alert alert-warning">⚠예약 내역이 없습니다.</div>`;
         return;
       }
 
-      // ...생략 (entries.length 체크 이후)
+      // 렌더링
+      let rows = '';
+      entries.forEach(e => {
+        const dtLabel = `${formatDateShortKR(e.date || e.dateLabel)} ${formatTimeTerse(e.time || e.timeLabel)}`;
+        const feeKR   = formatFeeKR(e.fee);
+        const stRaw   = String(e.status || '').trim();
 
-let rows = '';
-entries.forEach(e => {
-  const dtLabel = `${formatDateShortKR(e.date || e.dateLabel)} ${formatTimeTerse(e.time || e.timeLabel)}`;
-  const feeKR   = formatFeeKR(e.fee);
-  const stRaw   = String(e.status || '').trim();
+        const statusBadge =
+          stRaw === '✅예약됨'   ? '<span class="badge bg-success-subtle text-success">✅예약됨</span>' :
+          stRaw === '⛔취소됨'   ? '<span class="badge bg-secondary">⛔취소됨</span>' :
+                                 `<span class="badge bg-light text-muted">${esc(stRaw || '상태없음')}</span>`;
 
-  // 상태 뱃지 표현 (선택사항)
-  const statusBadge =
-    stRaw === '✅예약됨'   ? '<span class="badge bg-success-subtle text-success">✅예약됨</span>' :
-    stRaw === '⛔취소됨'   ? '<span class="badge bg-secondary">⛔취소됨</span>' :
-                           `<span class="badge bg-light text-muted">${esc(stRaw || '상태없음')}</span>`;
+        const cancelBtn = (stRaw === '예약됨')
+          ? `<button id="cancelBtn_${esc(e.dateId)}" class="btn btn-sm btn-outline-danger" onclick="cancelBooking('${esc(e.dateId)}')">취소</button>`
+          : '';
 
-  // ✅ 취소 버튼은 '예약됨'일 때만 노출
-  const cancelBtn = (stRaw === '예약됨')
-    ? `<button class="btn btn-sm btn-outline-danger" onclick="cancelBooking('${esc(e.dateId)}')">취소</button>`
-    : '';
+        rows += `<tr>
+          <td>${esc(e.name)}</td>
+          <td>${esc(dtLabel)}</td>
+          <td>${esc(e.course)}</td>
+          <td>${esc(feeKR)}</td>
+          <td>${statusBadge}</td>
+          <td>${cancelBtn}</td>
+        </tr>`;
+      });
 
-  rows += `<tr>
-    <td>${esc(e.name)}</td>
-    <td>${esc(dtLabel)}</td>
-    <td>${esc(e.course)}</td>
-    <td>${esc(feeKR)}</td>
-    <td>${statusBadge}</td>
-    <td>${cancelBtn}</td>
-  </tr>`;
-});
-
-wrap.innerHTML = `
-  <div class="d-flex justify-content-between align-items-center mb-2">
-    <strong>조회 결과</strong>
-    <span class="badge bg-secondary">${entries.length}건</span>
-  </div>
-  <table class="table table-sm align-middle">
-    <thead>
-      <tr><th>예약자</th><th>일정</th><th>코스</th><th>그린피</th><th>상태</th><th></th></tr>
-    </thead>
-    <tbody>${rows}</tbody>
-  </table>
-`;
-
+      wrap.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <strong>조회 결과</strong>
+          <span class="badge bg-secondary">${entries.length}건</span>
+        </div>
+        <table class="table table-sm align-middle">
+          <thead>
+            <tr><th>예약자</th><th>일정</th><th>코스</th><th>그린피</th><th>상태</th><th></th></tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
     } catch (err){
       if (err.name === 'AbortError') return;
-      wrap.innerHTML = '';
-      showToast("조회 실패: " + (err.message || err), "danger");
+      if (wrap) {
+        wrap.innerHTML = '';
+        showToast("조회 실패: " + (err.message || err), "danger");
+      }
     } finally {
-      btn.disabled = false;
-      btn.innerHTML = oldBtnHTML;
       _lookupAC = null;
     }
   }
 
-  // 조회 버튼 연결
-  // ✅ 조회 섹션 초기화 (중복 바인딩 방지)
-(function initLookupSection(){
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn   = document.getElementById('btnLookup');
-    const input = document.getElementById('lookupPhone');
-    if (!btn || !input) {
-      console.warn('[lookup] btnLookup / lookupPhone 요소를 찾지 못했습니다.');
+  /* ========== 예약번호로 조회 (6자리) ========== */
+  let _lookupIdAC = null;
+
+  function renderLookupTable(entries, targetElId){
+    const wrap = document.getElementById(targetElId);
+    if (!wrap) return;
+    if (!entries || entries.length === 0) {
+      wrap.innerHTML = `<div class="alert alert-warning">예약 내역이 없습니다.</div>`;
+      return;
+    }
+    let rows = '';
+    entries.forEach(e => {
+      const dtLabel = formatKRDateTime(e.date ?? e.dateLabel, e.time ?? e.timeLabel);
+      const feeKR   = formatFeeKR(e.fee ?? e.feeLabel);
+      const stRaw   = String(e.status || '').trim();
+
+      const statusBadge =
+        stRaw === '예약됨' ? '<span class="badge bg-success-subtle text-success">예약됨</span>' :
+        stRaw === '취소됨' ? '<span class="badge bg-secondary">취소됨</span>' :
+                             `<span class="badge bg-light text-muted">${esc(stRaw || '상태없음')}</span>`;
+
+      const cancelBtn = (stRaw === '예약됨')
+        ? `<button id="cancelBtn_${esc(e.dateId)}" class="btn btn-sm btn-outline-danger" onclick="cancelBooking('${esc(e.dateId)}')">취소</button>`
+        : '';
+
+      rows += `<tr>
+        <td>${esc(e.bookingId || '')}</td>
+        <td>${esc(e.name || '')}</td>
+        <td>${esc(dtLabel)}</td>
+        <td>${esc(e.course || '')}</td>
+        <td>${esc(feeKR)}</td>
+        <td>${statusBadge}</td>
+        <td>${cancelBtn}</td>
+      </tr>`;
+    });
+
+    wrap.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <strong>조회 결과</strong>
+        <span class="badge bg-secondary">${entries.length}건</span>
+      </div>
+      <table class="table table-sm align-middle">
+        <thead>
+          <tr><th>예약번호</th><th>예약자</th><th>일정</th><th>코스</th><th>그린피</th><th>상태</th><th></th></tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  }
+
+  async function lookupByBookingIdUI(bookingId){
+    const wrap = document.getElementById('lookupResultId');
+    const btn  = document.getElementById('btnLookupId');
+    if (!wrap || !btn) return;
+
+    if (!/^\d{6}$/.test(String(bookingId||''))) {
+      showToast("예약번호(6자리 숫자)를 정확히 입력하세요.", "warning");
       return;
     }
 
-    // 숫자만 입력되게 보정 (표시값은 그대로, 조회 시 다시 한 번 필터링)
-    input.addEventListener('input', () => {
-      input.value = input.value.replace(/[^\d]/g, '');
-    });
+    if (_lookupIdAC) _lookupIdAC.abort();
+    _lookupIdAC = new AbortController();
 
-    // 혹시 중복으로 리스너가 붙는 경우를 방지하기 위해 기존 리스너 제거 후 재등록
-    btn.replaceWith(btn.cloneNode(true));
-    const btnNew = document.getElementById('btnLookup');
-
-    btnNew.addEventListener('click', (e) => {
-      e.preventDefault();   // 폼 submit 등 기본동작 방지
-      e.stopPropagation();
-
-      const raw = input.value || '';
-      const phone = raw.replace(/\D+/g, '').slice(0, 11); // 숫자만, 최대 11자리
-
-      // 한국 휴대폰: 10 또는 11자리 허용
-      if (!(phone.length === 10 || phone.length === 11)) {
-        if (typeof showToast === 'function') {
-          showToast("휴대폰번호를 정확히 입력하세요.", "warning");
-        } else {
-          alert("휴대폰번호를 정확히 입력하세요.");
-        }
-        input.focus();
-        return;
-      }
-
-      // lookupBooking 함수가 있는지 확인
-      if (typeof lookupBooking !== 'function') {
-        console.error('[lookup] lookupBooking 함수가 없습니다.');
-        if (typeof showToast === 'function') {
-          showToast("시스템 오류: 조회 함수를 찾을 수 없습니다.", "danger");
-        }
-        return;
-      }
-
-      // 호출
-      lookupBooking(phone);
-    });
-  });
-})();
-
-/* ========== 공통: 조회 결과 테이블 렌더링 (취소 버튼 포함) ========== */
-function renderLookupTable(entries, targetElId){
-  const wrap = document.getElementById(targetElId);
-  if (!entries || entries.length === 0) {
-    wrap.innerHTML = `<div class="alert alert-warning">예약 내역이 없습니다.</div>`;
-    return;
-  }
-  let rows = '';
-  entries.forEach(e => {
-    const dtLabel = formatKRDateTime(e.date ?? e.dateLabel, e.time ?? e.timeLabel);
-    const feeKR   = formatFeeKR(e.fee ?? e.feeLabel);
-    const stRaw   = String(e.status || '').trim();
-
-    const statusBadge =
-      stRaw === '예약됨' ? '<span class="badge bg-success-subtle text-success">예약됨</span>' :
-      stRaw === '취소됨' ? '<span class="badge bg-secondary">취소됨</span>' :
-                           `<span class="badge bg-light text-muted">${esc(stRaw || '상태없음')}</span>`;
-
-    const cancelBtn = (stRaw === '예약됨')
-      ? `<button id="cancelBtn_${esc(e.dateId)}" class="btn btn-sm btn-outline-danger"
-           onclick="cancelBooking('${esc(e.dateId)}')">취소</button>`
-      : '';
-
-    rows += `<tr>
-      <td>${esc(e.bookingId || '')}</td>
-      <td>${esc(e.name || '')}</td>
-      <td>${esc(dtLabel)}</td>
-      <td>${esc(e.course || '')}</td>
-      <td>${esc(feeKR)}</td>
-      <td>${statusBadge}</td>
-      <td>${cancelBtn}</td>
-    </tr>`;
-  });
-
-  wrap.innerHTML = `
-    <div class="d-flex justify-content-between align-items-center mb-2">
-      <strong>조회 결과</strong>
-      <span class="badge bg-secondary">${entries.length}건</span>
-    </div>
-    <table class="table table-sm align-middle">
-      <thead>
-        <tr><th>예약번호</th><th>예약자</th><th>일정</th><th>코스</th><th>그린피</th><th>상태</th><th></th></tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
-  `;
-}
-
-/* ========== 예약번호로 조회 (6자리) ========== */
-let _lookupIdAC = null;
-
-async function lookupByBookingIdUI(bookingId){
-  const wrap = document.getElementById('lookupResultId');
-  const btn  = document.getElementById('btnLookupId');
-
-  if (!/^\d{6}$/.test(String(bookingId||''))) {
-    showToast("예약번호(6자리 숫자)를 정확히 입력하세요.", "warning");
-    return;
-  }
-
-  // 이전 요청 취소
-  if (_lookupIdAC) _lookupIdAC.abort();
-  _lookupIdAC = new AbortController();
-
-  // 로딩 UI
-  const oldBtnHTML = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '조회중... <span class="spinner-border spinner-border-sm ms-1" role="status" aria-hidden="true"></span>';
-  wrap.innerHTML = `<div class="text-muted">
-    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-    조회 중입니다...
-  </div>`;
-
-  const fetchOnce = async () => {
-    const url = `${GAS_URL}?route=lookup&bookingId=${encodeURIComponent(bookingId)}&t=${Date.now()}`;
-    const resp = await fetch(url, { signal: _lookupIdAC.signal, cache: 'no-store' });
-    const ct = resp.headers.get('content-type') || '';
-    if (!ct.includes('application/json')) throw new Error('Non-JSON response');
-    const data = await resp.json();
-    if (!data || !Array.isArray(data.entries)) throw new Error(data?.error || 'Invalid payload');
-    return data.entries;
-  };
-
-  try {
-    let entries;
-    try {
-      entries = await fetchOnce();
-    } catch {
-      await new Promise(r => setTimeout(r, 300)); // 1회 재시도
-      entries = await fetchOnce();
-    }
-    renderLookupTable(entries, 'lookupResultId');
-  } catch (err) {
-    if (err.name !== 'AbortError') {
-      wrap.innerHTML = '';
-      showToast("조회 실패: " + (err.message || err), "danger");
-    }
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = oldBtnHTML;
-    _lookupIdAC = null;
-  }
-}
-
-/* ========== 이벤트: 예약번호 조회 버튼 클릭 ========== */
-document.addEventListener('DOMContentLoaded', () => {
-  const input = document.getElementById('lookupBookingId');
-  const btn   = document.getElementById('btnLookupId');
-  if (!input || !btn) return;
-
-  // 숫자만 유지
-  input.addEventListener('input', () => {
-    input.value = input.value.replace(/[^\d]/g, '').slice(0, 6);
-  });
-
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const bid = input.value.replace(/\D/g, '');
-    lookupByBookingIdUI(bid);
-  });
-});
-
-async function cancelBooking(dateId) {
-  if (!confirm("🤷‍♂️해당 예약을 취소하시겠습니까?")) return;
-
-  const btn = document.querySelector(`#cancelBtn_${dateId}`);
-  if (btn) {
+    const oldBtnHTML = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>취소중...`;
-  }
+    btn.innerHTML = '조회중... <span class="spinner-border spinner-border-sm ms-1" role="status" aria-hidden="true"></span>';
+    wrap.innerHTML = `<div class="text-muted">
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      조회 중입니다...
+    </div>`;
 
-  try {
-    const resp = await fetch(GAS_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-      body: JSON.stringify({ route: "cancel", dateId })
-    });
-    const data = await resp.json();
+    const fetchOnce = async () => {
+      const url = `${GAS_URL}?route=lookup&bookingId=${encodeURIComponent(bookingId)}&t=${Date.now()}`;
+      const resp = await fetch(url, { signal: _lookupIdAC.signal, cache: 'no-store' });
+      const ct = resp.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) throw new Error('Non-JSON response');
+      const data = await resp.json();
+      if (!data || !Array.isArray(data.entries)) throw new Error(data?.error || 'Invalid payload');
+      return data.entries;
+    };
 
-    if (data.success) {
-      showToast("❌ 예약이 취소되었습니다.", "warning");
-      if (_lastLookupPhone) lookupBooking(_lastLookupPhone); // 재조회
-      setTimeout(() => loadDates(), 250); // ✅ 200~300ms 지연 후 재로드
-    } else {
-      showToast("취소 실패: " + (data.error || ""), "danger");
-    }
-  } catch {
-    showToast("네트워크 오류로 취소 실패", "danger");
-  } finally {
-    if (btn) {
+    try {
+      let entries;
+      try { entries = await fetchOnce(); }
+      catch { await new Promise(r => setTimeout(r, 300)); entries = await fetchOnce(); }
+      renderLookupTable(entries, 'lookupResultId');
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        wrap.innerHTML = '';
+        showToast("조회 실패: " + (err.message || err), "danger");
+      }
+    } finally {
       btn.disabled = false;
-      btn.innerHTML = "취소";
+      btn.innerHTML = oldBtnHTML;
+      _lookupIdAC = null;
     }
   }
-}
+
+  /* ========== 이벤트: 예약번호 조회 버튼 클릭 ========== */
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('lookupBookingId');
+    const btn   = document.getElementById('btnLookupId');
+    if (!input || !btn) return;
+
+    input.addEventListener('input', () => {
+      input.value = input.value.replace(/[^\d]/g, '').slice(0, 6);
+    });
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const bid = input.value.replace(/\D/g, '');
+      lookupByBookingIdUI(bid);
+    });
+  });
   </script>
 </body>
 </html>
