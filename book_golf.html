@@ -384,8 +384,8 @@
         document.getElementById('name').focus();
         return;
       }
-      if (!(phoneDigits.length === 10 || phoneDigits.length === 11)) {
-        alert('⚠️연락처를 정확히 입력해 주세요. (하이픈 없이 10~11자리)');
+      if (!(phoneDigits.length === 11)) {
+        alert('⚠️연락처를 정확히 입력해 주세요. (숫자만 11자리)');
         document.getElementById('phone').focus();
         return;
       }
